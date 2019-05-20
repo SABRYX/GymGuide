@@ -15,6 +15,9 @@ const instructions = Platform.select({
     "Double tap R on your keyboard to reload,\n" +
     "Shake or press menu button for dev menu"
 });
+import Icon from "react-native-vector-icons/FontAwesome";
+
+const myIcon = <Icon name="rocket" size={30} color="#900" />;
 
 type Props = {};
 export default class Settings extends Component<Props> {
@@ -22,6 +25,7 @@ export default class Settings extends Component<Props> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to Settings !</Text>
+        {myIcon}
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>

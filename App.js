@@ -2,14 +2,21 @@ import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import {
   TabNavigation,
-  TabButton,
-  TabIcons
+  TabButton
 } from "@opengeekslab/react-native-tab-navigator";
 
+/// Screens For the Tab Navigation
 import Home from "./src/screens/home";
 import Food from "./src/screens/food";
 import NearbyGyms from "./src/screens/nearby-gyms";
 import Settings from "./src/screens/settings";
+
+/// Icons For The Tab Navigation
+import gym from "./src/resources/images/icons/gym.png";
+import dummble from "./src/resources/images/icons/dummble.png";
+import healthyFood from "./src/resources/images/icons/healthyFood.png";
+import Icon from "react-native-vector-icons/FontAwesome";
+import settings from "./src/resources/images/icons/settings.png";
 
 const navigationRouter = {
   Screen_1: {
@@ -18,8 +25,10 @@ const navigationRouter = {
       title: "Item 1",
       showTitle: true,
       animated: true,
-      tabIcon: TabIcons.Social,
+      tabIcon: gym,
       animation: [
+        "ripple",
+
         {
           name: "rotationY",
           type: "bouncing"
@@ -32,36 +41,34 @@ const navigationRouter = {
     screenOptions: {
       title: "Item 2",
       showTitle: true,
-      tabIcon: TabIcons.Message,
-      animation: [
-        "ripple",
-        { name: "scale" },
-        {
-          name: "fume",
-          duration: 700
-        },
-        {
-          name: "fadeOut",
-          duration: 700
-        }
-      ]
+      tabIcon: dummble,
+      animation: ["ripple", { name: "scale" }]
     }
   },
   Screen_3: {
     screen: NearbyGyms,
     screenOptions: {
       title: "Item 3",
-      tabIcon: TabIcons.TuneView,
+      tabIcon: healthyFood,
       animated: true,
-      animation: []
+      animation: [
+        "ripple",
+
+        {
+          name: "rotationX",
+          type: "bouncing"
+        }
+      ]
     }
   },
   Screen_4: {
     screen: Settings,
     screenOptions: {
       title: "Item 4",
-      tabIcon: TabIcons.Bell,
+      tabIcon: settings,
       animation: [
+        "ripple",
+
         {
           name: "pendulum",
           duration: 700
@@ -73,14 +80,13 @@ const navigationRouter = {
 
 const defaultConfig = {
   lazy: true,
-  defaultRoute: "Screen_3",
+  defaultRoute: "Screen_1",
   screenOptions: {
     showTitle: true,
     animated: true,
     buttonView: TabButton,
     activeTintColor: "#0579fc",
-    inactiveTintColor: "#818692",
-    animation: ["ripple", "rotationZ"]
+    inactiveTintColor: "#818692"
   }
 };
 
@@ -99,6 +105,6 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5FCFF"
+    backgroundColor: "#ffffff"
   }
 });
