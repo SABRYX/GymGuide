@@ -1,98 +1,38 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import {
-  TabNavigation,
-  TabButton
-} from "@opengeekslab/react-native-tab-navigator";
 
-/// Screens For the Tab Navigation
-import Home from "./src/screens/home";
-import Food from "./src/screens/food";
-import NearbyGyms from "./src/screens/nearby-gyms";
-import Settings from "./src/screens/settings";
+//Localization
+import { I18nManager, AsyncStorage } from "react-native";
+import i18n from "./src/localization/i18n";
+import { MainTabNavigation } from "./src/screens";
+import RNRestart from "react-native-restart";
 
-/// Icons For The Tab Navigation
-import gym from "./src/resources/images/icons/gym.png";
-import dummble from "./src/resources/images/icons/dummble.png";
-import healthyFood from "./src/resources/images/icons/healthyFood.png";
-import Icon from "react-native-vector-icons/FontAwesome";
-import settings from "./src/resources/images/icons/settings.png";
-
-const navigationRouter = {
-  Screen_1: {
-    screen: Home,
-    screenOptions: {
-      title: "Item 1",
-      showTitle: true,
-      animated: true,
-      tabIcon: gym,
-      animation: [
-        "ripple",
-
-        {
-          name: "rotationY",
-          type: "bouncing"
-        }
-      ]
-    }
-  },
-  Screen_2: {
-    screen: Food,
-    screenOptions: {
-      title: "Item 2",
-      showTitle: true,
-      tabIcon: dummble,
-      animation: ["ripple", { name: "scale" }]
-    }
-  },
-  Screen_3: {
-    screen: NearbyGyms,
-    screenOptions: {
-      title: "Item 3",
-      tabIcon: healthyFood,
-      animated: true,
-      animation: [
-        "ripple",
-
-        {
-          name: "rotationX",
-          type: "bouncing"
-        }
-      ]
-    }
-  },
-  Screen_4: {
-    screen: Settings,
-    screenOptions: {
-      title: "Item 4",
-      tabIcon: settings,
-      animation: [
-        "ripple",
-
-        {
-          name: "pendulum",
-          duration: 700
-        }
-      ]
-    }
-  }
-};
-
-const defaultConfig = {
-  lazy: true,
-  defaultRoute: "Screen_1",
-  screenOptions: {
-    showTitle: true,
-    animated: true,
-    buttonView: TabButton,
-    activeTintColor: "#0579fc",
-    inactiveTintColor: "#818692"
-  }
-};
-
-const MainTabNavigation = TabNavigation(navigationRouter, defaultConfig);
 
 export default class App extends Component {
+  componentDidMount() {
+    // AsyncStorage.setItem("lang", "ar")
+		// 	.then(data => {
+		// 		RNRestart.Restart();
+		// 	})
+		// 	.catch(err => {
+		// 		console.log("err");
+		// 	});
+    // AsyncStorage.getItem("lang").then(language => {
+    //   if (language === "ar") {
+    //     I18nManager.forceRTL(true);
+    //     if (!I18nManager.isRTL) {
+    //       RNRestart.Restart();
+    //     }
+    //   } else {
+    //     I18nManager.forceRTL(false);
+    //     if (I18nManager.isRTL) {
+    //       RNRestart.Restart();
+    //     }
+    //   }
+    //   i18n.locale = language;
+    // });
+  }
+
   render() {
     return (
       <View style={styles.container}>

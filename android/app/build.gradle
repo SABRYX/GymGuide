@@ -141,6 +141,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-i18n')
+    implementation project(':react-native-restart')
     implementation project(':react-native-localize')
     implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
