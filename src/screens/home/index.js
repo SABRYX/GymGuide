@@ -17,7 +17,7 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class Home extends Component<Props> {
+class Home extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
@@ -47,3 +47,5 @@ const styles = StyleSheet.create({
     marginBottom: 5
   }
 });
+
+export { Home };

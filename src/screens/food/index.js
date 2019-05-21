@@ -17,7 +17,7 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class Food extends Component<Props> {
+class Food extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
@@ -47,3 +47,6 @@ const styles = StyleSheet.create({
     marginBottom: 5
   }
 });
+
+
+export { Food };

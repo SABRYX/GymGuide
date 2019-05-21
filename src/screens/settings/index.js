@@ -20,7 +20,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 const myIcon = <Icon name="rocket" size={30} color="#900" />;
 
 type Props = {};
-export default class Settings extends Component<Props> {
+class Settings extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
@@ -51,3 +51,5 @@ const styles = StyleSheet.create({
     marginBottom: 5
   }
 });
+
+export { Settings };

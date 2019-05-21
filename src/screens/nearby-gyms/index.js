@@ -17,7 +17,7 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class NearbyGyms extends Component<Props> {
+class NearbyGyms extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
@@ -47,3 +47,5 @@ const styles = StyleSheet.create({
     marginBottom: 5
   }
 });
+
+export { NearbyGyms };
