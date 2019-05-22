@@ -1,5 +1,7 @@
 import React from "react";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+import { createStackNavigator } from "react-navigation";
+
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -7,13 +9,68 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import I18n from "../localization/i18n";
 
 /// Screens For the Tab Navigation
-import { Home, Food, NearbyGyms, Settings } from "../screens";
+import { Home, Food, Settings } from "../screens";
+import { NearbyGymStack } from "./NearbyGymStack";
+import { Colors } from "../config/colors";
 
+const HomeStack = createStackNavigator({
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      title: I18n.t("HOME"),
+      headerStyle: {
+        backgroundColor: Colors.WHITE
+      },
+      headerTitleStyle: { alignSelf: "center" },
+      headerTintColor: Colors.BLEUDEFRANCE,
+      headerTitleStyle: {
+        textAlign: "center",
+        flex: 1
+      }
+    }
+  }
+});
+
+const FoodStack = createStackNavigator({
+  Food: {
+    screen: Food,
+    navigationOptions: {
+      title: I18n.t("DIET"),
+      headerStyle: {
+        backgroundColor: Colors.WHITE
+      },
+      headerTitleStyle: { alignSelf: "center" },
+      headerTintColor: Colors.BLEUDEFRANCE,
+      headerTitleStyle: {
+        textAlign: "center",
+        flex: 1
+      }
+    }
+  }
+});
+
+const SettingsStack = createStackNavigator({
+  Settings: {
+    screen: Settings,
+    navigationOptions: {
+      title: I18n.t("SETTINGS"),
+      headerStyle: {
+        backgroundColor: Colors.WHITE
+      },
+      headerTitleStyle: { alignSelf: "center" },
+      headerTintColor: Colors.BLEUDEFRANCE,
+      headerTitleStyle: {
+        textAlign: "center",
+        flex: 1
+      }
+    }
+  }
+});
 
 export const MainTabNavigation = createMaterialBottomTabNavigator(
   {
     Home: {
-      screen: Home,
+      screen: HomeStack,
       navigationOptions: {
         tabBarLabel: I18n.t("HOME"),
         tabBarIcon: ({ tintColor }) => (
@@ -22,7 +79,7 @@ export const MainTabNavigation = createMaterialBottomTabNavigator(
       }
     },
     NearbyGyms: {
-      screen: NearbyGyms,
+      screen: NearbyGymStack,
       navigationOptions: {
         tabBarLabel: I18n.t("NEARBY"),
         tabBarIcon: ({ tintColor }) => (
@@ -35,7 +92,7 @@ export const MainTabNavigation = createMaterialBottomTabNavigator(
       }
     },
     Food: {
-      screen: Food,
+      screen: FoodStack,
       navigationOptions: {
         tabBarLabel: I18n.t("DIET"),
         tabBarIcon: ({ tintColor }) => (
@@ -48,7 +105,7 @@ export const MainTabNavigation = createMaterialBottomTabNavigator(
       }
     },
     Settings: {
-      screen: Settings,
+      screen: SettingsStack,
       navigationOptions: {
         tabBarLabel: I18n.t("SETTINGS"),
         tabBarIcon: ({ tintColor }) => (
@@ -59,8 +116,8 @@ export const MainTabNavigation = createMaterialBottomTabNavigator(
   },
   {
     initialRouteName: "Home",
-    activeColor: "#900",
-    inactiveColor: "#3e2465",
-    barStyle: { backgroundColor: "white" }
+    activeColor: Colors.BLEUDEFRANCE,
+    inactiveColor: Colors.GREY,
+    barStyle: { backgroundColor: Colors.WHITE }
   }
 );
