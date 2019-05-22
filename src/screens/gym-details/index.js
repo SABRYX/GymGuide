@@ -1,51 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Image, View, Text, ScrollView } from "react-native";
+import { styles } from "./styles";
+import { Colors } from "../../config/colors";
 
-const instructions = Platform.select({
-  ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
-  android:
-    "Double tap R on your keyboard to reload,\n" +
-    "Shake or press menu button for dev menu"
-});
-
-type Props = {};
-class GymDetails extends Component<Props> {
+class GymDetails extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+    return {
+      title: params.title ? params.title : "Details Screen",
+      headerStyle: {
+        backgroundColor: Colors.WHITE
+      },
+      headerTitleStyle: { alignSelf: "center" },
+      headerTintColor: Colors.BLEUDEFRANCE,
+      headerTitleStyle: {
+        fontWeight: "bold",
+        textAlign: "center",
+        flex: 0.85
+      }
+    };
+  };
   render() {
+    const { navigation } = this.props;
+    const { image, title, description } = navigation.state.params;
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to NearbyGyms !</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <View style={styles.imageContainer}>
+          <Image source={image} style={styles.image} />
+        </View>
+        <ScrollView
+          style={styles.textContainer}
+          showsVerticalScrollIndicator={false}
+        >
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.description}>{description}</Text>
+        </ScrollView>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
-  }
-});
 
 export { GymDetails };
