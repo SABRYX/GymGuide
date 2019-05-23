@@ -25,6 +25,7 @@ import Pineapple from "../../resources/images/food/Pineapple.png";
 import Strawberry from "../../resources/images/food/Strawberry.png";
 import Tomato from "../../resources/images/food/Tomato.png";
 import Watermelon from "../../resources/images/food/Watermelon.png";
+import { Colors } from "../../config/colors";
 
 class Food extends Component {
   constructor(props) {
@@ -131,7 +132,7 @@ class Food extends Component {
     if (this.state.isLoading) {
       return (
         <View style={styles.container}>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color={Colors.BLEUDEFRANCE} />
         </View>
       );
     } else {

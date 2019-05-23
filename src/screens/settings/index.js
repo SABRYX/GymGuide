@@ -1,55 +1,65 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { View, AsyncStorage, I18nManager } from "react-native";
+import { styles } from "./styles";
+import { Dropdown } from "react-native-material-dropdown";
+import RNRestart from "react-native-restart";
+import i18n from "../../localization/i18n";
 
-const instructions = Platform.select({
-  ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
-  android:
-    "Double tap R on your keyboard to reload,\n" +
-    "Shake or press menu button for dev menu"
-});
-import Icon from "react-native-vector-icons/FontAwesome";
+let data = [
+  {
+    value: "ar"
+  },
+  {
+    value: "en"
+  }
+];
 
-const myIcon = <Icon name="rocket" size={30} color="#900" />;
+class Settings extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedLanguage: "en"
+    };
+  }
+  componentWillMount() {
+    AsyncStorage.getItem("lang").then(language => {
+      if (language === "ar") {
+        this.setState({ selectedLanguage: "ar" });
+      }
+    });
+  }
 
-type Props = {};
-class Settings extends Component<Props> {
+  languageChange(value) {
+    AsyncStorage.setItem("lang", `${value}`)
+      .then(data => {
+        if (value == "en") {
+          I18nManager.forceRTL(false);
+        } else {
+          I18nManager.forceRTL(true);
+        }
+        RNRestart.Restart();
+      })
+      .catch(err => {
+        console.log("err");
+      });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Settings !</Text>
-        {myIcon}
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <View style={styles.languageContainer}>
+          <Dropdown
+            label="Select Language :"
+            data={data}
+            value={this.state.selectedLanguage}
+            onChangeText={value => this.setState({ selectedLanguage: value })}
+            labelFontSize={20}
+            onBlur={() => this.languageChange(this.state.selectedLanguage)}
+          />
+        </View>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
-  }
-});
 
 export { Settings };

@@ -4,7 +4,9 @@ import { Colors } from "../../config/colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.WHITE
+    backgroundColor: Colors.WHITE,
+    alignItems: "center",
+    justifyContent: "center"
   },
   cardItem: {
     width: "90%",
