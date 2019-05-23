@@ -5,5 +5,6 @@ export const Colors = {
   BLEUDEFRANCE: "#3C91E6",
   MIDDLEREDPURPLE: "#38023B",
   WHITE: "white",
-  GREY: "grey"
+  GREY: "grey",
+  BLACK: "black"
 };
