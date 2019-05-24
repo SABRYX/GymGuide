@@ -27,12 +27,35 @@ export const styles = StyleSheet.create({
   },
   logOutButton: {
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    backgroundColor: Colors.MIDDLEREDPURPLE,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10,
+    width: "40%",
+    height: 40,
+    alignSelf: "center",
+    borderRadius: 100
   },
   logoutIcon: {
     paddingRight: 5
   },
   logoutText: {
-    color: Colors.MIDDLEREDPURPLE
+    color: Colors.WHITE
+  },
+  changePasswordButton: {
+    backgroundColor: Colors.BLEUDEFRANCE,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10,
+    width: "40%",
+    height: 40,
+    alignSelf: "center",
+    borderRadius: 100
+  },
+  activityIndicatorContainer: {
+    position: "absolute",
+    marginTop: "50%",
+    paddingLeft: "54%"
   }
 });

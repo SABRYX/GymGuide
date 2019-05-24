@@ -9,7 +9,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import I18n from "../localization/i18n";
 
 /// Screens For the Tab Navigation
-import { Home, Food, Settings } from "../screens";
+import { Home, Food, Settings, Login, Intro } from "../screens";
 import { NearbyGymStack } from "./NearbyGymStack";
 import { Colors } from "../config/colors";
 
@@ -122,11 +122,22 @@ const MainTabNavigation = createMaterialBottomTabNavigator(
   }
 );
 
-export const MainStackNavigation = createStackNavigator({
-  Login: {
-    screen: Login
+export const MainStackNavigation = createStackNavigator(
+  {
+    MainNavigation: {
+      screen: MainTabNavigation
+    },
+    Intro: {
+      screen: Intro
+    },
+    Login: {
+      screen: Login
+    }
   },
-  MainNavigation: {
-    screen: MainTabNavigation
+  {
+    headerMode: "none",
+    navigationOptions: {
+      headerVisible: false
+    }
   }
-});
+);

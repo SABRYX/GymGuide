@@ -4,8 +4,9 @@
   "DIET": "Diet",
   "SETTINGS": "Settings",
   "SELECTLANGUAGE":"Select Language :",
-  "CHANGEPASSWORD":"Change Password :",
+  "CHANGEPASSWORD":"Change Password",
   "PASSWORD":"Password",
   "CONFIRMPASSWORD":"Confrim Password",
-  "LOGOUT":"Logout"
+  "LOGOUT":"Logout",
+  "EMAIL":"Email"
 }
