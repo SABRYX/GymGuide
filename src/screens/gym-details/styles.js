@@ -29,5 +29,5 @@ export const styles = StyleSheet.create({
     color: Colors.MIDDLEREDPURPLE,
     marginTop: 10
   },
-  map: { marginTop: 10, height: 200, width: "100%" }
+  map: { marginTop: 10, height: 170, width: "100%" }
 });
