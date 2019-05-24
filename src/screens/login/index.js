@@ -63,6 +63,11 @@ class Login extends Component {
               .catch(err => {
                 console.log("err");
               });
+          } else {
+            this.setState({
+              error: "Incorrect email or password please try again",
+              loading: false
+            });
           }
         });
       } else {

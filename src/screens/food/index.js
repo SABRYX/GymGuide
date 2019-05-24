@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import { styles } from "./styles";
-import axios from "axios";
 import PurpleBackground from "../../resources/images/backgrounds/purplebg.jpg";
 import BlueBackground from "../../resources/images/backgrounds/bluebg.jpg";
 import OrangeBackground from "../../resources/images/backgrounds/orangebg.jpg";
@@ -26,6 +25,7 @@ import Strawberry from "../../resources/images/food/Strawberry.png";
 import Tomato from "../../resources/images/food/Tomato.png";
 import Watermelon from "../../resources/images/food/Watermelon.png";
 import { Colors } from "../../config/colors";
+import Axios from "axios";
 
 class Food extends Component {
   constructor(props) {
@@ -50,10 +50,9 @@ class Food extends Component {
   }
 
   _fetchData(callback) {
-    axios
-      .get(`http://www.fruityvice.com/api/fruit/all`)
+    Axios.get(`http://www.fruityvice.com/api/fruit/all`)
       .then(response => {
-        console.log(response);
+        console.log("response response", response);
         callback(response);
       })
       .catch(error => {
