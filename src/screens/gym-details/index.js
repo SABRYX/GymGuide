@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Image, View, Text, ScrollView } from "react-native";
+import { Image, View, Text, ScrollView, Linking, Platform } from "react-native";
 import { styles } from "./styles";
 import { Colors } from "../../config/colors";
+import MapView, { Marker } from "react-native-maps";
 
 class GymDetails extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -20,6 +21,25 @@ class GymDetails extends Component {
       }
     };
   };
+
+  openGoogleMaps() {
+    const { navigation } = this.props;
+    const { title } = navigation.state.params;
+
+    const scheme = Platform.select({
+      ios: "maps:0,0?q=",
+      android: "geo:0,0?q="
+    });
+    const latLng = `${37.78825},${-122.4324}`;
+    const label = title;
+    const url = Platform.select({
+      ios: `${scheme}${label}@${latLng}`,
+      android: `${scheme}${latLng}(${label})`
+    });
+
+    Linking.openURL(url);
+  }
+
   render() {
     const { navigation } = this.props;
     const { image, title, description } = navigation.state.params;
@@ -34,6 +54,26 @@ class GymDetails extends Component {
         >
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.description}>{description}</Text>
+          <View>
+            <MapView
+              initialRegion={{
+                latitude: 37.78825,
+                longitude: -122.4324,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421
+              }}
+              style={styles.map}
+            >
+              <Marker
+                coordinate={{
+                  latitude: 37.78825,
+                  longitude: -122.4324
+                }}
+                title={title}
+                onPress={() => this.openGoogleMaps()}
+              />
+            </MapView>
+          </View>
         </ScrollView>
       </View>
     );

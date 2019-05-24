@@ -112,6 +112,9 @@ class Settings extends Component {
           if (response.status === 200) {
             this.setState({ loading: false });
             ToastAndroid.show("Password changed success", ToastAndroid.SHORT);
+          } else {
+            this.setState({ loading: false });
+            ToastAndroid.show("Password changed failed", ToastAndroid.SHORT);
           }
         });
       } else {

@@ -28,5 +28,6 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     color: Colors.MIDDLEREDPURPLE,
     marginTop: 10
-  }
+  },
+  map: { marginTop: 10, height: 200, width: "100%" }
 });
