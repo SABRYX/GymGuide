@@ -67,7 +67,7 @@ const SettingsStack = createStackNavigator({
   }
 });
 
-export const MainTabNavigation = createMaterialBottomTabNavigator(
+const MainTabNavigation = createMaterialBottomTabNavigator(
   {
     Home: {
       screen: HomeStack,
@@ -121,3 +121,12 @@ export const MainTabNavigation = createMaterialBottomTabNavigator(
     barStyle: { backgroundColor: Colors.WHITE }
   }
 );
+
+export const MainStackNavigation = createStackNavigator({
+  Login: {
+    screen: Login
+  },
+  MainNavigation: {
+    screen: MainTabNavigation
+  }
+});

@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { styles } from "./styles";
 import { Card } from "react-native-elements";
-import PurpleBackground from "../../resources/images/backgrounds/purplebg.jpg";
 import BlueBackground from "../../resources/images/backgrounds/bluebg.jpg";
 import OrangeBackground from "../../resources/images/backgrounds/orangebg.jpg";
 import GreenBackground from "../../resources/images/backgrounds/greenbg.jpg";
@@ -17,7 +16,6 @@ import HealthClub from "../../resources/images/gymLogos/HealthClub.png";
 import Gymnastic from "../../resources/images/gymLogos/Gymnastic.jpeg";
 import GymTown from "../../resources/images/gymLogos/GymTown.jpeg";
 import FitnessGym from "../../resources/images/gymLogos/FitnessGym.png";
-import TheGym from "../../resources/images/gymLogos/TheGym.jpeg";
 
 const GymList = [
   {
@@ -26,14 +24,6 @@ const GymList = [
     title: "Gym Town",
     description:
       "On of the best 24/7 gyms in new cairo. We have coach Mohammed Rezk Egypt Champion to Train you"
-  },
-
-  {
-    image: TheGym,
-    backgroundImage: PurpleBackground,
-    title: "The Gym",
-    description:
-      "We are the gym we are unique we are mixed gym bring your partener or maybe you will find your life partener here"
   },
   {
     image: HealthClub,
@@ -59,18 +49,17 @@ const GymList = [
 ];
 
 class NearbyGyms extends Component {
-
-  navigateToGymDetails(training){
+  navigateToGymDetails(training) {
     let { navigation } = this.props;
-    
-    navigation.navigate("GymDetails",{...training});
+
+    navigation.navigate("GymDetails", { ...training });
   }
 
   render() {
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         {GymList.map(training => (
-          <TouchableOpacity onPress={()=>this.navigateToGymDetails(training)}>
+          <TouchableOpacity onPress={() => this.navigateToGymDetails(training)}>
             <Card
               containerStyle={styles.cardItem}
               wrapperStyle={styles.cardItemWrapper}

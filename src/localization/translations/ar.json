@@ -2,5 +2,11 @@
   "HOME": "الرئسيه",
   "NEARBY": "نادي قريب",
   "DIET": "حميه",
-  "SETTINGS": "اعدادات"
+  "SETTINGS": "اعدادات",
+  "SELECTLANGUAGE":"آختر الغه :",
+  "CHANGEPASSWORD":"تغيير كلمه المرور :",
+  "PASSWORD":"كلمه المرور",
+  "CONFIRMPASSWORD":"تكرار كلمه المرور",
+  "LOGOUT":"تسحيل خروج"
+
 }
