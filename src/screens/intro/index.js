@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, ActivityIndicator, AsyncStorage } from "react-native";
 import { styles } from "./styles";
 import { Colors } from "../../config/colors";
+import { NavigationActions, StackActions } from "react-navigation";
 
 class Intro extends Component {
   constructor(props) {
@@ -17,11 +18,30 @@ class Intro extends Component {
 
   checkUserLoggedIn = async () => {
     try {
-      AsyncStorage.getItem("userLoggedIn").then(response => {
+      AsyncStorage.getItem("user").then(response => {
+        console.log("Response", response);
         if (response) {
-          this.props.navigation.navigate("MainNavigation");
+          this.props.navigation.dispatch(
+            StackActions.reset({
+              index: 0,
+              actions: [
+                NavigationActions.navigate({
+                  routeName: "MainNavigation"
+                })
+              ]
+            })
+          );
         } else {
-          this.props.navigation.navigate("Login");
+          this.props.navigation.dispatch(
+            StackActions.reset({
+              index: 0,
+              actions: [
+                NavigationActions.navigate({
+                  routeName: "Login"
+                })
+              ]
+            })
+          );
         }
       });
     } catch (error) {

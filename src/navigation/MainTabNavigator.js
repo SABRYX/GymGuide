@@ -124,14 +124,14 @@ const MainTabNavigation = createMaterialBottomTabNavigator(
 
 export const MainStackNavigation = createStackNavigator(
   {
-    MainNavigation: {
-      screen: MainTabNavigation
-    },
     Intro: {
       screen: Intro
     },
     Login: {
       screen: Login
+    },
+    MainNavigation: {
+      screen: MainTabNavigation
     }
   },
   {

@@ -17,6 +17,7 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import { NavigationActions, StackActions } from "react-navigation";
 import { getOptionsWithRoute } from "../../config/api-routes";
 import Axios from "axios";
+import { ToastAndroid } from "react-native";
 
 let data = [
   {
@@ -36,13 +37,26 @@ class Settings extends Component {
       password: "",
       confirmPassword: "",
       loading: false,
-      error: ""
+      error: "",
+      user: {},
+      token: ""
     };
   }
   componentWillMount() {
     AsyncStorage.getItem("lang").then(language => {
       if (language === "ar") {
         this.setState({ selectedLanguage: "ar" });
+      }
+    });
+    AsyncStorage.getItem("user").then(user => {
+      if (user) {
+        this.setState({ user: JSON.parse(user) });
+      }
+    });
+    AsyncStorage.getItem("accessToken").then(token => {
+      if (token) {
+        console.log(token);
+        this.setState({ token: JSON.parse(token) });
       }
     });
   }
@@ -64,7 +78,9 @@ class Settings extends Component {
 
   logOut = async () => {
     try {
-      AsyncStorage.removeItem("userLoggedIn");
+      AsyncStorage.removeItem("user");
+      AsyncStorage.removeItem("accessToken");
+      AsyncStorage.removeItem("lang");
       this.props.navigation.dispatch(
         StackActions.reset({
           index: 0,
@@ -80,16 +96,23 @@ class Settings extends Component {
     }
   };
   changePassword() {
-    let { password, confirmPassword } = this.state;
+    let { password, confirmPassword, token } = this.state;
 
     this.setState({ loading: true, error: "" }, () => {
       if (password.trim().length > 5 && password === confirmPassword) {
-        let options = getOptionsWithRoute("changePassword", {
-          password: password,
-          confirmPassword: confirmPassword
-        });
+        let options = getOptionsWithRoute(
+          "changePassword",
+          {
+            password: password,
+            password_confirmation: confirmPassword
+          },
+          token
+        );
         Axios(options).then(response => {
-          console.log("response", response);
+          if (response.status === 200) {
+            this.setState({ loading: false });
+            ToastAndroid.show("Password changed success", ToastAndroid.SHORT);
+          }
         });
       } else {
         this.setState({
@@ -107,7 +130,8 @@ class Settings extends Component {
       canUpdate,
       selectedLanguage,
       loading,
-      error
+      error,
+      user
     } = this.state;
     return (
       <View style={styles.container}>
@@ -116,6 +140,9 @@ class Settings extends Component {
             <ActivityIndicator size="large" color={Colors.BLEUDEFRANCE} />
           </View>
         ) : null}
+        <View style={styles.userNameContainer}>
+          <Text style={styles.userNameText}> Hello {user.name} !</Text>
+        </View>
         <View style={styles.languageContainer}>
           <Dropdown
             label={I18n.t("SELECTLANGUAGE")}

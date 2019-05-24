@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   ImageBackground,
   Text,
-  ActivityIndicator
+  ActivityIndicator,
+  AsyncStorage
 } from "react-native";
 import { styles } from "./styles";
 import { Colors } from "../../config/colors";
@@ -17,6 +18,7 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Axios from "axios";
 import { getOptionsWithRoute } from "../../config/api-routes";
+import { NavigationActions, StackActions } from "react-navigation";
 
 class Login extends Component {
   constructor(props) {
@@ -37,8 +39,31 @@ class Login extends Component {
           email: email,
           password: password
         });
+        console.log(options);
         Axios(options).then(response => {
-          console.log("response", response);
+          if (response.status === 200) {
+            AsyncStorage.setItem("user", JSON.stringify(response.data.user))
+              .then(() => {
+                AsyncStorage.setItem(
+                  "accessToken",
+                  JSON.stringify(response.data.token)
+                ).then(() => {
+                  this.props.navigation.dispatch(
+                    StackActions.reset({
+                      index: 0,
+                      actions: [
+                        NavigationActions.navigate({
+                          routeName: "MainNavigation"
+                        })
+                      ]
+                    })
+                  );
+                });
+              })
+              .catch(err => {
+                console.log("err");
+              });
+          }
         });
       } else {
         this.setState({

@@ -57,5 +57,15 @@ export const styles = StyleSheet.create({
     position: "absolute",
     marginTop: "50%",
     paddingLeft: "54%"
+  },
+  userNameContainer: {
+    marginTop: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row"
+  },
+  userNameText: {
+    fontSize: 22,
+    color: Colors.MIDDLEREDPURPLE
   }
 });
